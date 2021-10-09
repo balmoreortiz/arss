@@ -10,7 +10,7 @@ return [
      * Control if all the laratrust tables should be truncated before running the seeder.
      */
     'truncate_tables' => true,
-
+    //Definicion Estructura de Roles y Permisos.
     'roles_structure' => [
         'admin' => [
             'users' => 'c,r,u,d',
