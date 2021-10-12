@@ -33,28 +33,25 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Nombre:</strong>
-
-                <input type="string" name="NOM_SERV" value="{{isset($repuestos->Nombre)? $repuestos->Nombre:'' }}" id="Nombre" class="form-control" placeholder="Ingresar Nombre">
+                <input type="string" name="NOM_SERV" value="{{old("NOM_SERV")}}" id="Nombre" class="form-control" placeholder="Ingresar Nombre">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Descripción:</strong>
-                <textarea class="form-control" style="height:150px" name="DESC_SERV" placeholder="Ingresar descripción"></textarea>
+                <input type="string" name="DESC_SERV" value="{{old("DESC_SERV")}}" id="descripcion" class="form-control" placeholder="Ingresar Descripción">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Precio:</strong>
-                <input type="string" name="PREC_SERV" class="form-control" placeholder="Ingresar Precio">
+                <input type="string" name="PREC_SERV" value="{{old("PREC_SERV")}}" id="precio"  class="form-control" placeholder="Ingresar Precio">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-
                 <strong>Foto:</strong>
-                <input type='file' name="FOTO_SERV" id="FOTO_SERV" class="form-control" placeholder="Ingresar Foto">
-                
+                <input type='file' name="FOTO_SERV"  value="{{old("FOTO_SERV")}}" id="FOTO_SERV" class="form-control" placeholder="Ingresar Foto">            
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
@@ -64,3 +61,5 @@
 </form>
 
 @endsection
+
+    
