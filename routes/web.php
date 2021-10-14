@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-//use App\Http\Controllers\RepuestosController;
+use App\Http\Controllers\RepuestosController;
 
 //controlares
 use App\Http\Controllers\RolController;
@@ -24,7 +24,7 @@ Route::get('/', function () {
 Route::resource('repuestos', RepuestosController::class);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//Auth::routes();
+Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
