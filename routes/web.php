@@ -22,13 +22,3 @@ Route::get('/', function () {
 });
 
 Route::resource('repuestos', RepuestosController::class);
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::group(['middleware'=>['auth']],function(){
-    Route::resource('roles', RolController::class);
-    Route::resource('usuarios', UsuarioController::class);
-});
