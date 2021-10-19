@@ -57,7 +57,9 @@
             </td>
         </tr>
         @endforeach
-      
     </table>  
+    <div class="pull-right">
+        <a class="btn btn-primary" href="{{ route('servicio.index') }}">Volver a Inicio</a>
+    </div>
     {!! $data->links() !!}      
 @endsection

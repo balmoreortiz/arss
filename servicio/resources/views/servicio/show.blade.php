@@ -7,7 +7,7 @@
                 
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('servicio.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('servicio.index') }}">Volver</a>
             </div>
         </div>
     </div>

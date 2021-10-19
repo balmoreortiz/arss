@@ -11,7 +11,7 @@
             <h1>Registrar Nuevo Servicio</h1>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('servicio.index') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ route('servicio.index') }}">Volver</a>
         </div>
     </div>
 </div>
