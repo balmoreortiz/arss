@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\RepuestoController;
 use Illuminate\Support\Facades\Route;
 //controlares
 use App\Http\Controllers\RolController;
+use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\UsuarioController;
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +30,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['middleware'=>['auth']],function(){
     Route::resource('roles', RolController::class);
     Route::resource('usuarios', UsuarioController::class);
+    Route::resource('repuestos', RepuestoController::class);
+    Route::resource('servicios', ServicioController::class);
+
 });

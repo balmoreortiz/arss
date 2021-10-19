@@ -52,7 +52,7 @@
                                             @endphp
                                             <h2 class="text-right"><i class="fa fa-servicio f-left"></i><span>{{$cant_servicios}}</span></h2>
                                             <p class="m-b-0 text-right"><a href="/servicios" class="text-white">Ver más</a></p>
-                                            /div>
+                                        </div>
                                         </div>
                                     </div>                                                                
                                     
@@ -61,15 +61,15 @@
                                             <div class="card-block">
                                                 <h5>Repuestos</h5>                                               
                                                 @php
-                                                 use App\Models\Repuesto;
-                                                $cant_servicios = Servicio::count();                                                
+                                                use App\Models\Repuesto;
+                                                $cant_repuestos = Repuesto::count();                                                
                                                 @endphp
                                                 <h2 class="text-right"><i class="fa fa-repuesto f-left"></i><span>{{$cant_repuestos}}</span></h2>
                                                 <p class="m-b-0 text-right"><a href="/repuestos" class="text-white">Ver más</a></p>
                                             </div>
                                         </div>
                                     </div>
-                                </div>      
+                                </div>   
                         </div>
                     </div>
                 </div>

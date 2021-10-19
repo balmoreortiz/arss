@@ -50,7 +50,7 @@ class RolController extends Controller
     {
         $this->validate($request,['name'=>'required','permission'=>'required']);
         $role = Role::create(['name'=>$request->input('name')]);
-        $role->syncPermission($request->input('permission'));
+        $role->syncPermissions($request->input('permission'));
 
         return redirect()->route('roles.index');
 
@@ -77,8 +77,8 @@ class RolController extends Controller
     {
         $role = Role::find($id);
         $permission = Permission::get();
-        $rolePermissions = DB::table('role_has_permissions')->where('roles_has_permissions.role_id',$id)
-            ->pluck('roles_has_permissions.permission_id','roles_has_permissions.permission_id')
+        $rolePermissions = DB::table('role_has_permissions')->where('role_has_permissions.role_id',$id)
+            ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
             ->all();
         return view('roles.editar',compact('role','permission','rolePermissions'));
     }

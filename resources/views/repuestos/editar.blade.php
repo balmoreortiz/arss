@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('title')
-    Usuario
+    Repuestos
 @endsection
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Editar Usuarios</h3>
+            <h3 class="page__heading">Editar Repuesto</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -24,39 +24,34 @@
                         </button>
                         </div>
                         @endif
-                         {!! Form::model($user, ['method'=> 'PUT','route'=>['usuarios.update', $user->id]])!!}
+                         {!! Form::model($repuesto, ['method'=> 'PUT',"enctype" =>"multipart/form-data",'route'=>['repuestos.update', $repuesto->id]])!!}
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <label for="name">Nombre</label>
-                                        {!! Form::text('name', null, array('class'=>'form-control')) !!}
+                                        <label for="NOM_RESP">Nombre</label>
+                                        {!! Form::text('NOM_RESP', null, array('class'=>'form-control')) !!}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <label for="email">E-mail</label>
-                                        {!! Form::text('email', null, array('class'=>'form-control')) !!}
+                                        <label for="DESC_RESP">Descripción</label>
+                                        {!! Form::text('DESC_RESP', null, array('class'=>'form-control')) !!}
                                     </div>
                                 </div> 
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <label for="password">Contraseña</label>
-                                {!! Form::password('password', array('class'=>'form-control')) !!}
-                            </div>
-                        </div> 
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <label for="name">Confirmar contraseña</label>
-                                {!! Form::password('confirm-password', array('class'=>'form-control')) !!}
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <label for="name">Roles</label>
-                                {!! Form::select('roles[]', $roles,[], array('class'=>'form-control')) !!}
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="PREC_RESP">Precio</label>
+                                        {!! Form::text('PREC_RESP', null, array('class'=>'form-control')) !!}
+                                    </div>
+                                </div> 
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="name">Foto:</label>
+                                        {!! Form::file('FOTO_RESP', null , array('class'=>'form-control-file')) !!}
+                                    </div>
+                                    <img src="{{ asset('storage/'.$repuesto->FOTO_SERV)}}" width="150" class="img-responsive" alt={{$repuesto->id}}>
+                                </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
                             <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>
                     </div>
