@@ -4,9 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Repuesto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class RepuestoController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:ver-repuesto|crear-repuesto|editar-repuesto|borrar-repuesto', ['only'=>['index']]);
+        $this->middleware('permission:crear-repuesto',['only'=>['create','store']]);
+        $this->middleware('permission:editar-repuesto',['only'=>['edit','update']]);
+        $this->middleware('permission:borrar-repuesto',['only'=>['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -95,9 +103,34 @@ class RepuestoController extends Controller
      * @param  \App\Models\Repuesto  $repuesto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Repuesto $repuesto)
+    public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'NOM_REP' => 'required',
+            'DESC_REP' => 'required',
+            'PREC_REP' => 'required|numeric|regex:/^[\d]{0,2}(\.[\d]{1,2})?$/',
+        ], [
+            'NOM_REP.required' => 'El campo "Nombre" es obligatorio.',
+            'DESC_REP.required' => 'El campo "Descripción" es obligatorio.',
+            'PREC_REO.required' => 'Ingresar un valor númerico en el campo "Precio", El campo es obligatorio.',
+        ]);
+ 
+        $dataRep = request()->except(['_token','_method']);
+
+        if($request->hasFile('FOTO_SERV')){
+            $repuesto=Repuesto::findOrFail($id);
+            Storage::delete('public/'.$repuesto->FOTO_SERV);
+            $dataRep['FOTO_SERV']=$request->file('FOTO_SERV')->store('servicios','public');
+        }
+
+        Repuesto::where('id','=',$id)->update($dataRep);
+
+        $repuesto=Repuesto::findOrFail($id);
+        
+        return redirect()->route('servicios.index')
+                        ->with('success','Servicio Actualizado con Éxito');
+        
     }
 
     /**
@@ -106,8 +139,10 @@ class RepuestoController extends Controller
      * @param  \App\Models\Repuesto  $repuesto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Repuesto $repuesto)
+    public function destroy($id)
     {
         //
+        Repuesto::find($id)->delete();
+        return redirect()->route('servicios.index');
     }
 }

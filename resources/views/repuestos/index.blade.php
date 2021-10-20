@@ -29,12 +29,12 @@
                                             <td style="display:none">{{$repuesto->id}}</td>
                                             <td>{{$repuesto->NOM_REP}}</td>
                                             <td>{{$repuesto->DESC_REP}}</td>
-                                            <td>{{$repuesto->PREC_REP}}</td>
+                                            <td>{{'$'.number_format($repuesto->PREC_REP,2)}}</td>
                                             <td>{{$repuesto->EXIS_REP}}</td>
                                             <td>   
                                                 <img src="{{ asset('storage/'.$repuesto->FOTO_REP)}}" width="150" class="img-responsive" alt={{$repuesto->id}}>
                                             </td>
-                                            <td>
+                                            <td style="width: 20%">
                                                 <a class="btn btn-primary" href="{{route('repuestos.edit', $repuesto->id) }}">Editar</a>
 
                                                 {!! Form::open(['method'=> 'DELETE', 'route'=> ['repuestos.destroy', $repuesto->id], 'style'=>'display:inline']) !!}

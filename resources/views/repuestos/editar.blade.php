@@ -28,26 +28,26 @@
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <label for="NOM_RESP">Nombre</label>
-                                        {!! Form::text('NOM_RESP', null, array('class'=>'form-control')) !!}
+                                        <label for="NOM_REP">Nombre</label>
+                                        {!! Form::text('NOM_REP', null, array('class'=>'form-control')) !!}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <label for="DESC_RESP">Descripción</label>
-                                        {!! Form::text('DESC_RESP', null, array('class'=>'form-control')) !!}
+                                        <label for="DESC_REP">Descripción</label>
+                                        {!! Form::text('DESC_REP', null, array('class'=>'form-control')) !!}
                                     </div>
                                 </div> 
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <label for="PREC_RESP">Precio</label>
-                                        {!! Form::text('PREC_RESP', null, array('class'=>'form-control')) !!}
+                                        <label for="PREC_REP">Precio</label>
+                                        {!! Form::text('PREC_REP', null, array('class'=>'form-control')) !!}
                                     </div>
                                 </div> 
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="name">Foto:</label>
-                                        {!! Form::file('FOTO_RESP', null , array('class'=>'form-control-file')) !!}
+                                        {!! Form::file('FOTO_REP', null , array('class'=>'form-control-file')) !!}
                                     </div>
                                     <img src="{{ asset('storage/'.$repuesto->FOTO_SERV)}}" width="150" class="img-responsive" alt={{$repuesto->id}}>
                                 </div>

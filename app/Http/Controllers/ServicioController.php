@@ -8,6 +8,14 @@ use Illuminate\Support\Facades\Storage;
 
 class ServicioController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:ver-servicio|crear-servicio|editar-servicio|borrar-servicio', ['only'=>['index']]);
+        $this->middleware('permission:crear-servicio',['only'=>['create','store']]);
+        $this->middleware('permission:editar-servicio',['only'=>['edit','update']]);
+        $this->middleware('permission:borrar-servicio',['only'=>['destroy']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -101,12 +109,10 @@ class ServicioController extends Controller
             'NOM_SERV' => 'required',
             'DESC_SERV' => 'required',
             'PREC_SERV' => 'required|numeric|regex:/^[\d]{0,2}(\.[\d]{1,2})?$/',
-            'FOTO_SERV'=> ['required', 'image'],
         ], [
             'NOM_SERV.required' => 'El campo "Nombre" es obligatorio.',
             'DESC_SERV.required' => 'El campo "Descripción" es obligatorio.',
             'PREC_SERV.required' => 'Ingresar un valor númerico en el campo "Precio", El campo es obligatorio.',
-            'FOTO_SERV.required' => 'Ingresar una imagen en el campo "Foto", El campo es obligatorio.',
         ]);
  
         $dataServ = request()->except(['_token','_method']);

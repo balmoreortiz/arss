@@ -28,11 +28,11 @@
                                             <td style="display:none">{{$servicio->id}}</td>
                                             <td>{{$servicio->NOM_SERV}}</td>
                                             <td>{{$servicio->DESC_SERV}}</td>
-                                            <td>{{$servicio->PREC_SERV}}</td>
+                                            <td>{{'$'.number_format($servicio->PREC_SERV,2)}}</td>
                                             <td>   
                                                 <img src="{{ asset('storage/'.$servicio->FOTO_SERV)}}" width="150" class="img-responsive" alt={{$servicio->id}}>
                                             </td>
-                                            <td>
+                                            <td style="width: 20%">
                                                 <a class="btn btn-primary" href="{{route('servicios.edit', $servicio->id) }}">Editar</a>
 
                                                 {!! Form::open(['method'=> 'DELETE', 'route'=> ['servicios.destroy', $servicio->id], 'style'=>'display:inline']) !!}
