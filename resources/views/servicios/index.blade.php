@@ -12,7 +12,29 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="{{ route('servicios.create')}}" class="btn btn-warning">Nuevo</a>
+                            <div class="row">
+                                <div class="col-6">
+                                    <a href="{{ route('servicios.create')}}" class="btn btn-warning">Nuevo</a>
+                                </div>
+                                <div class="col-6">
+                                    <form>
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-auto mx-2">
+                                                <i class="fas fa-search text-body"></i>
+                                            </div>
+                                            <!--end of col-->
+                                            <div class="col mx-2">
+                                                {!! Form::text('NOM_SERV', null, array('class'=>'form-control','placeholder'=>'Buscar por Nombre','name'=>'buscarpor')) !!}
+                                            </div>
+                                            <!--end of col-->
+                                            <div class="col-auto">
+                                                <button class="btn btn-success" type="submit">Buscar</button>
+                                            </div>
+                                            <!--end of col-->
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>                            
                             <table class="table table-stripped mt-2">
                                 <thead style="background-color: #6777ef">
                                     <th style="display:none">ID</th>

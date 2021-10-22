@@ -21,9 +21,10 @@ class ServicioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = SERVICIO::latest()->paginate(5);
+        $nombre = $request->get('buscarpor');        
+        $data = Servicio::where('NOM_SERV','like',"%$nombre%")->latest()->paginate(4);
     
         return view('servicios.index',compact('data'))
             ->with('i', (request()->input('page', 1) - 1) * 5);

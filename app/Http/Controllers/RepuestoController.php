@@ -20,10 +20,11 @@ class RepuestoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $data = Repuesto::latest()->paginate(5);
+        $nombre = $request->get('buscarpor');        
+        $data = Repuesto::where('NOM_REP','like',"%$nombre%")->latest()->paginate(4);
     
         return view('repuestos.index',compact('data'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -128,7 +129,7 @@ class RepuestoController extends Controller
 
         $repuesto=Repuesto::findOrFail($id);
         
-        return redirect()->route('servicios.index')
+        return redirect()->route('repuestos.index')
                         ->with('success','Servicio Actualizado con Éxito');
         
     }
@@ -143,6 +144,6 @@ class RepuestoController extends Controller
     {
         //
         Repuesto::find($id)->delete();
-        return redirect()->route('servicios.index');
+        return redirect()->route('repuestos.index');
     }
 }
