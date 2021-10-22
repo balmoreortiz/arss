@@ -18,6 +18,12 @@ class SeederTablaPermisos extends Seeder
     {
         //Deficion roles
         $permisos =[
+            //Permisos para la tabla usuario
+            'ver-usuario',
+            'crear-usuario',
+            'editar-usuario',
+            'borrar-usuario',
+            //Permisos para la tabla rol
             'ver-rol',
             'crear-rol',
             'editar-rol',
