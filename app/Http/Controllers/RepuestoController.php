@@ -122,7 +122,7 @@ class RepuestoController extends Controller
         if($request->hasFile('FOTO_SERV')){
             $repuesto=Repuesto::findOrFail($id);
             Storage::delete('public/'.$repuesto->FOTO_SERV);
-            $dataRep['FOTO_SERV']=$request->file('FOTO_SERV')->store('servicios','public');
+            $dataRep['FOTO_SERV']=$request->file('FOTO_SERV')->store('repuestos','public');
         }
 
         Repuesto::where('id','=',$id)->update($dataRep);
