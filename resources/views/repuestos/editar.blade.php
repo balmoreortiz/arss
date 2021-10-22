@@ -40,8 +40,20 @@
                                 </div> 
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
+                                        <label for="PREC_REP">Marca</label>
+                                        {!! Form::text('MARC_REP', null, array('class'=>'form-control')) !!}
+                                    </div>
+                                </div> 
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
                                         <label for="PREC_REP">Precio</label>
                                         {!! Form::text('PREC_REP', null, array('class'=>'form-control')) !!}
+                                    </div>
+                                </div> 
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="EXIS_REP">Existencia</label>
+                                        {!! Form::text('EXIS_REP', null, array('class'=>'form-control')) !!}
                                     </div>
                                 </div> 
                                 <div class="col-xs-12 col-sm-12 col-md-12">
@@ -49,7 +61,7 @@
                                         <label for="name">Foto:</label>
                                         {!! Form::file('FOTO_REP', null , array('class'=>'form-control-file')) !!}
                                     </div>
-                                    <img src="{{ asset('storage/'.$repuesto->FOTO_SERV)}}" width="150" class="img-responsive" alt={{$repuesto->id}}>
+                                    <img src="{{ asset('storage/'.$repuesto->FOTO_REP)}}" width="150" class="img-responsive" alt={{$repuesto->id}}>
                                 </div>
                         <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
                             <button type="submit" class="btn btn-primary">Guardar</button>

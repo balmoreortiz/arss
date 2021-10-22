@@ -39,6 +39,12 @@
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
+                                        <label for="name">Marca:</label>
+                                        {!! Form::text('MARC_REP', null, array('class'=>'form-control',)) !!}
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
                                         <label for="name">Precio:</label>
                                         {!! Form::text('PREC_REP', null, array('class'=>'form-control')) !!}
                                     </div>

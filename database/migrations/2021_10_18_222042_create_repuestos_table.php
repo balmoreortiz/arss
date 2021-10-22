@@ -18,6 +18,7 @@ class CreateRepuestosTable extends Migration
 
             $table->string('NOM_REP');
             $table->string('DESC_REP');
+            $table->string('MARC_REP');
             $table->float('PREC_REP');
             $table->integer('EXIS_REP');
             $table->String('FOTO_REP');
