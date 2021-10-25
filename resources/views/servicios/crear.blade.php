@@ -45,7 +45,7 @@
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <label for="name">Foto:</label>
+                                        <label class="d-block" for="name">Foto:</label>
                                         {!! Form::file('FOTO_SERV', null, array('class'=>'form-control-file')) !!}
                                     </div>
                                 </div>
