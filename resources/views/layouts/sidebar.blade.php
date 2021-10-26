@@ -6,7 +6,7 @@
     </div>
     <div class="sidebar-brand sidebar-brand-sm">
         <a href="{{ url('/home') }}" class="small-sidebar-text">
-            <img class="navbar-brand-full" src="{{ asset('img/logo.png') }}" width="45px" alt=""/>
+            <p class="text-dark m-2">ARSS</p>
         </a>
     </div>
     <ul class="sidebar-menu">

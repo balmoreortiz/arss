@@ -40,7 +40,7 @@
                                     <th style="display:none">ID</th>
                                     <th style="color: #fff">Nombre</th>
                                     <th style="color: #fff">Descripción</th>
-                                    <th style="color: #fff;"><a class="btn btn-primary" href="{{ url('servicios?order='.$order.'&buscarpor='.$nombre)}}">Precio</a></th>
+                                    <th style="color: #fff;"><a class="btn btn-primary" href="{{ url('servicios?order='.$order.'&buscarpor='.$nombre)}}"><i class="fas {{ ($order=='desc') ? 'fa-angle-down' : 'fa-angle-up' }} pr-2"></i>Precio</a></th>
                                     <th style="color: #fff">Foto</th>
                                     <th style="color: #fff">Acciones</th>
                                 </thead>
@@ -55,7 +55,7 @@
                                             <td style="display:none">{{$servicio->id}}</td>
                                             <td>{{$servicio->NOM_SERV}}</td>
                                             <td>{{$servicio->DESC_SERV}}</td>
-                                            <td>{{'$'.number_format($servicio->PREC_SERV,2)}}</td>
+                                            <td style="width: 15%">{{'$'.number_format($servicio->PREC_SERV,2)}}</td>
                                             <td>   
                                                 <img src="{{ asset('storage/'.$servicio->FOTO_SERV)}}" width="150" class="img-responsive" alt={{$servicio->id}}>
                                             </td>
