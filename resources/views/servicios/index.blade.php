@@ -24,7 +24,7 @@
                                             </div>
                                             <!--end of col-->
                                             <div class="col mx-2">
-                                                {!! Form::text('NOM_SERV', null, array('class'=>'form-control','placeholder'=>'Buscar por Nombre','name'=>'buscarpor')) !!}
+                                                {!! Form::text('NOM_SERV', $nombre , array('class'=>'form-control','placeholder'=>'Buscar por Nombre','name'=>'buscarpor')) !!}
                                             </div>
                                             <!--end of col-->
                                             <div class="col-auto">
@@ -40,11 +40,16 @@
                                     <th style="display:none">ID</th>
                                     <th style="color: #fff">Nombre</th>
                                     <th style="color: #fff">Descripción</th>
-                                    <th style="color: #fff">Precio</th>
+                                    <th style="color: #fff;"><a class="btn btn-primary" href="{{ url('servicios?order='.$order.'&buscarpor='.$nombre)}}">Precio</a></th>
                                     <th style="color: #fff">Foto</th>
                                     <th style="color: #fff">Acciones</th>
                                 </thead>
                                 <tbody>
+                                    @if (count($data) <= 0)
+                                        <tr>
+                                            <td colspan="5">No hay resultados</td>
+                                        </tr>
+                                    @else
                                     @foreach ($data as $servicio)
                                         <tr style="height: 150px;">
                                             <td style="display:none">{{$servicio->id}}</td>
@@ -58,12 +63,13 @@
                                                 <a class="btn btn-primary" href="{{route('servicios.edit', $servicio->id) }}">Editar</a>
 
                                                 {!! Form::open(['method'=> 'DELETE', 'route'=> ['servicios.destroy', $servicio->id], 'style'=>'display:inline']) !!}
-                                                    {!! Form::submit('Borrar', ['class'=> 'btn btn-danger']) !!}
+                                                    {!! Form::submit('Borrar', ['class'=> 'btn btn-danger','onclick'=>'return confirm("¿Desea borrar el servicio seleccionado?")']) !!}
                                                 {!! Form::close() !!} 
                                             </td>
                                         </tr>
                                         
                                     @endforeach
+                                    @endif   
                                 </tbody>
                             </table>
                             <div class="pagination justify-content-end">

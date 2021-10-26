@@ -10,10 +10,16 @@ class ServicioController extends Controller
 {
     function __construct()
     {
-        $this->middleware('permission:ver-servicio|crear-servicio|editar-servicio|borrar-servicio', ['only'=>['index']]);
+        $this->middleware('permission:ver-servicio|crear-servicio|editar-servicio|borrar-servicio', ['only'=>['index','order']]);
         $this->middleware('permission:crear-servicio',['only'=>['create','store']]);
         $this->middleware('permission:editar-servicio',['only'=>['edit','update']]);
         $this->middleware('permission:borrar-servicio',['only'=>['destroy']]);
+    }
+
+    public function order() {
+        $data = Servicio::latest()->orderBy('PREC_SERV','asc')->paginate(4);
+            return view('servicios.index',compact('data'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -24,9 +30,10 @@ class ServicioController extends Controller
     public function index(Request $request)
     {
         $nombre = $request->get('buscarpor');        
-        $data = Servicio::where('NOM_SERV','like',"%$nombre%")->latest()->paginate(4);
-    
-        return view('servicios.index',compact('data'))
+        $order = ($request->get('order')) ? $request->get('order') : 'asc';
+        $data = Servicio::where('NOM_SERV','like',"%$nombre%")->latest()->orderBy('PREC_SERV', $order)->paginate(4);
+        $order = ($order == 'desc') ? 'asc' : 'desc';
+        return view('servicios.index',compact('data','order','nombre'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -144,4 +151,5 @@ class ServicioController extends Controller
         Servicio::find($id)->delete();
         return redirect()->route('servicios.index');
     }
+
 }
