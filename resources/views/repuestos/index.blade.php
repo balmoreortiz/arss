@@ -24,7 +24,7 @@
                                             </div>
                                             
                                             <div class="col mx-2">
-                                                {!! Form::text('buscarpor', null, array('class'=>'form-control','placeholder'=>'Buscar por Nombre','name'=>'buscarpor')) !!}
+                                                {!! Form::text('buscarpor', $nombre, array('class'=>'form-control','placeholder'=>'Buscar por Nombre','name'=>'buscarpor')) !!}
                                             </div>
                                             
                                             <div class="col-auto">
@@ -40,13 +40,18 @@
                                     <th style="display:none">ID</th>
                                     <th style="color: #fff">Nombre</th>
                                     <th style="color: #fff">Descripción</th>
-                                    <th style="color: #fff">Marca</th>
-                                    <th style="color: #fff">Precio</th>
+                                    <th style="color: #fff"><a class="btn btn-primary" href="{{ url('repuestos?orderPre='.$orderPre.'&orderMarc='.$orderMarc.'&buscarpor='.$nombre)}}">Marca</a></th>
+                                    <th style="color: #fff"><a class="btn btn-primary" href="{{ url('repuestos?orderPre='.$orderPre.'&orderMarc='.$orderMarc.'buscarpor='.$nombre)}}">Precio</a></th>
                                     <th style="color: #fff">Existencia</th>
                                     <th style="color: #fff">Foto</th>
                                     <th style="color: #fff">Acciones</th>
                                 </thead>
                                 <tbody>
+                                    @if (count($data) <= 0)
+                                        <tr>
+                                            <td colspan="5">No hay resultados</td>
+                                        </tr>
+                                    @else
                                     @foreach ($data as $repuesto)
                                         <tr style="height: 150px;">
                                             <td style="display:none">{{$repuesto->id}}</td>
@@ -67,6 +72,7 @@
                                             </td>
                                         </tr>
                                     @endforeach
+                                    @endif
                                 </tbody>
                             </table>
                             <div class="pagination justify-content-end">

@@ -23,10 +23,13 @@ class RepuestoController extends Controller
     public function index(Request $request)
     {
         //
-        $nombre = $request->get('buscarpor');        
-        $data = Repuesto::where('NOM_REP','like',"%$nombre%")->latest()->paginate(4);
-    
-        return view('repuestos.index',compact('data'))
+        $nombre = $request->get('buscarpor');
+        $orderPre = ($request->get('orderPre')) ? $request->get('orderPre') : 'asc';
+        $orderMarc = ($request->get('orderMarc')) ? $request->get('orderPre') : 'asc';    
+        $data = Repuesto::where('NOM_REP','like',"%$nombre%")->orderBy('MARC_REP', $orderMarc)->orderBy('PREC_REP', $orderPre)->latest()->paginate(10);
+        $orderPre = ($orderPre == 'desc') ? 'asc' : 'desc';
+        $orderMarc = ($orderMarc == 'desc') ? 'asc' : 'desc';
+        return view('repuestos.index',compact('data','orderPre','orderMarc','nombre'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
