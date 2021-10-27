@@ -39,7 +39,6 @@
                                 <thead style="background-color: #6777ef">
                                     <th style="display:none">ID</th>
                                     <th style="color: #fff">Nombre</th>
-                                    <th style="color: #fff">Descripción</th>
                                     <th style="color: #fff;"><a class="btn btn-primary" href="{{ url('servicios?order='.$order.'&buscarpor='.$nombre)}}"><i class="fas {{ ($order=='desc') ? 'fa-angle-down' : 'fa-angle-up' }} pr-2"></i>Precio</a></th>
                                     <th style="color: #fff">Foto</th>
                                     <th style="color: #fff">Acciones</th>
@@ -51,22 +50,26 @@
                                         </tr>
                                     @else
                                     @foreach ($data as $servicio)
-                                        <tr style="height: 150px;">
-                                            <td style="display:none">{{$servicio->id}}</td>
-                                            <td>{{$servicio->NOM_SERV}}</td>
-                                            <td>{{$servicio->DESC_SERV}}</td>
-                                            <td style="width: 15%">{{'$'.number_format($servicio->PREC_SERV,2)}}</td>
-                                            <td>   
-                                                <img src="{{ asset('storage/'.$servicio->FOTO_SERV)}}" width="150" class="img-responsive" alt={{$servicio->id}}>
-                                            </td>
-                                            <td style="width: 20%">
-                                                <a class="btn btn-primary" href="{{route('servicios.edit', $servicio->id) }}">Editar</a>
-
-                                                {!! Form::open(['method'=> 'DELETE', 'route'=> ['servicios.destroy', $servicio->id], 'style'=>'display:inline']) !!}
-                                                    {!! Form::submit('Borrar', ['class'=> 'btn btn-danger','onclick'=>'return confirm("¿Desea borrar el servicio seleccionado?")']) !!}
-                                                {!! Form::close() !!} 
-                                            </td>
-                                        </tr>
+                                        
+                                            <tr style="height: 150px;">
+                                                
+                                                <td style="display:none">{{$servicio->id}}</td>
+                                                <td>{{$servicio->NOM_SERV}}</td>
+                                                <td style="width: 15%">{{'$'.number_format($servicio->PREC_SERV,2)}}</td>
+                                                <td>   
+                                                    <img src="{{ asset('storage/'.$servicio->FOTO_SERV)}}" width="150" class="img-responsive" alt={{$servicio->id}}>
+                                                </td>
+                                                <td style="width: 30%">
+                                                    <a class="btn btn-info" href="{{route('servicios.show', $servicio->id) }}">Detalle</a>
+                                                    <a class="btn btn-primary" href="{{route('servicios.edit', $servicio->id) }}">Editar</a>
+                                                    {!! Form::open(['method'=> 'DELETE', 'route'=> ['servicios.destroy', $servicio->id], 'style'=>'display:inline']) !!}
+                                                        {!! Form::submit('Borrar', ['class'=> 'btn btn-danger','onclick'=>'return confirm("¿Desea borrar el servicio seleccionado?")']) !!}
+                                                    {!! Form::close() !!} 
+                                                </td>
+                                                </a>
+                                            </tr>
+                                        
+                                        
                                         
                                     @endforeach
                                     @endif   
