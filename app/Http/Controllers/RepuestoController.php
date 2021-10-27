@@ -10,7 +10,7 @@ class RepuestoController extends Controller
 {
     function __construct()
     {
-        $this->middleware('permission:ver-repuesto|crear-repuesto|editar-repuesto|borrar-repuesto', ['only'=>['index']]);
+        $this->middleware('permission:ver-repuesto|crear-repuesto|editar-repuesto|borrar-repuesto', ['only'=>['index','show']]);
         $this->middleware('permission:crear-repuesto',['only'=>['create','store']]);
         $this->middleware('permission:editar-repuesto',['only'=>['edit','update']]);
         $this->middleware('permission:borrar-repuesto',['only'=>['destroy']]);
@@ -24,11 +24,20 @@ class RepuestoController extends Controller
     {
         //
         $nombre = $request->get('buscarpor');
-        $orderPre = ($request->get('orderPre')) ? $request->get('orderPre') : 'asc';
-        $orderMarc = ($request->get('orderMarc')) ? $request->get('orderPre') : 'asc';    
-        $data = Repuesto::where('NOM_REP','like',"%$nombre%")->orderBy('MARC_REP', $orderMarc)->orderBy('PREC_REP', $orderPre)->latest()->paginate(10);
-        $orderPre = ($orderPre == 'desc') ? 'asc' : 'desc';
-        $orderMarc = ($orderMarc == 'desc') ? 'asc' : 'desc';
+        $orderPre = 'asc';
+        $orderMarc = 'asc';
+        if ($request->get('orderPre')) {
+            $orderPre = $request->get('orderPre');
+            $data = Repuesto::where('NOM_REP','like',"%$nombre%")->orderBy('PREC_REP', $orderPre)->latest()->paginate(10);
+            
+        } else if ($request->get('orderMarc')){
+            $orderMarc = $request->get('orderMarc');
+            $data = Repuesto::where('NOM_REP','like',"%$nombre%")->orderBy('MARC_REP', $orderMarc)->latest()->paginate(10);
+        } else 
+            $data = Repuesto::where('NOM_REP','like',"%$nombre%")->orderBy('MARC_REP', $orderMarc)->orderBy('PREC_REP', $orderPre)->latest()->paginate(10);
+        
+        $orderPre = ($orderPre == 'asc') ? 'desc' : 'asc';
+        $orderMarc = ($orderMarc == 'asc') ? 'desc' : 'asc';
         return view('repuestos.index',compact('data','orderPre','orderMarc','nombre'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -87,6 +96,7 @@ class RepuestoController extends Controller
     public function show(Repuesto $repuesto)
     {
         //
+        return view('repuestos.ver',compact('repuesto'));
     }
 
     /**

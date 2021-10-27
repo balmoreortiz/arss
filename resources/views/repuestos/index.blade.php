@@ -39,9 +39,8 @@
                                 <thead style="background-color: #6777ef">
                                     <th style="display:none">ID</th>
                                     <th style="color: #fff">Nombre</th>
-                                    <th style="color: #fff">Descripción</th>
-                                    <th style="color: #fff"><a class="btn btn-primary" href="{{ url('repuestos?orderPre='.$orderPre.'&orderMarc='.$orderMarc.'&buscarpor='.$nombre)}}"><i class="fas {{ ($orderMarc=='desc') ? 'fa-angle-down' : 'fa-angle-up' }} pr-2"></i>Marca</a></th>
-                                    <th style="color: #fff"><a class="btn btn-primary" href="{{ url('repuestos?orderPre='.$orderPre.'&orderMarc='.$orderMarc.'buscarpor='.$nombre)}}"><i class="fas {{ ($orderPre=='desc') ? 'fa-angle-down' : 'fa-angle-up' }} pr-2"></i>Precio</a></th>
+                                    <th style="color: #fff"><a class="btn btn-primary" href="{{ url('repuestos?orderMarc='.$orderMarc.'&buscarpor='.$nombre)}}"><i class="fas {{ ($orderMarc=='desc') ? 'fa-angle-down' : 'fa-angle-up' }} pr-2"></i>Marca</a></th>
+                                    <th style="color: #fff"><a class="btn btn-primary" href="{{ url('repuestos?&orderPre='.$orderPre.'&buscarpor='.$nombre)}}"><i class="fas {{ ($orderPre=='desc') ? 'fa-angle-down' : 'fa-angle-up' }} pr-2"></i>Precio</a></th>
                                     <th style="color: #fff">Existencia</th>
                                     <th style="color: #fff">Foto</th>
                                     <th style="color: #fff">Acciones</th>
@@ -56,14 +55,14 @@
                                         <tr style="height: 150px;">
                                             <td style="display:none">{{$repuesto->id}}</td>
                                             <td>{{$repuesto->NOM_REP}}</td>
-                                            <td>{{$repuesto->DESC_REP}}</td>
                                             <td style="width: 15%">{{$repuesto->MARC_REP}}</td>
                                             <td style="width: 15%">{{'$'.number_format($repuesto->PREC_REP,2)}}</td>
                                             <td style="width: 10%">{{$repuesto->EXIS_REP}}</td>
                                             <td>   
                                                 <img src="{{ asset('storage/'.$repuesto->FOTO_REP)}}" width="100" class="img-responsive" alt={{$repuesto->id}}>
                                             </td>
-                                            <td style="width: 20%">
+                                            <td style="width: 26%">
+                                                <a class="btn btn-info" href="{{route('repuestos.show', $repuesto->id) }}">Detalle</a>
                                                 <a class="btn btn-primary" href="{{route('repuestos.edit', $repuesto->id) }}">Editar</a>
 
                                                 {!! Form::open(['method'=> 'DELETE', 'route'=> ['repuestos.destroy', $repuesto->id], 'style'=>'display:inline']) !!}
