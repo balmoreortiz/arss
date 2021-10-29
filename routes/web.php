@@ -29,7 +29,7 @@ Route::get('/', function (Request $request) {
     
     return view('welcome',compact('repuestos','servicios','nombre'));
 });
-
+Route::match(['get', 'post'], '/botman', [BotManController::class, 'handle']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
