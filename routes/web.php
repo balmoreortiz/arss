@@ -1,11 +1,13 @@
 <?php
 
-use App\Http\Controllers\RepuestoController;
+
 use Illuminate\Support\Facades\Route;
 //controlares
+use App\Http\Controllers\BotManController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\RepuestoController;
 use App\Models\Repuesto;
 use App\Models\Servicio;
 use Illuminate\Http\Request;
@@ -29,14 +31,15 @@ Route::get('/', function (Request $request) {
     
     return view('welcome',compact('repuestos','servicios','nombre'));
 });
-Route::match(['get', 'post'], '/botman', [BotManController::class, 'handle']);
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::match(['get', 'post'], 'botman', [BotManController::class, 'handle']);
+
 
 Route::group(['middleware'=>['auth']],function(){
+    Route::match(['get', 'post'], 'botman', [BotManController::class, 'handle']);
     Route::resource('roles', RolController::class);
     Route::resource('usuarios', UsuarioController::class);
     Route::resource('repuestos', RepuestoController::class);
