@@ -28,12 +28,15 @@
             </div>
         </div>
     </section>
+     <!-- Smartsupp Live Chat script -->
+     <script type="text/javascript">
+        var _smartsupp = _smartsupp || {};
+        _smartsupp.key = 'e8f9bb29702cd58d6331f3f05c11752c1d77d10a';
+        window.smartsupp||(function(d) {
+        var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+        s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+        c.type='text/javascript';c.charset='utf-8';c.async=true;
+        c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+        })(document);
+    </script>
 @endsection
-<script>
-    var botmanWidget = {
-        title:'ARSS Bot',
-	    aboutText: 'Escribe algo',
-	    introMessage: "Hola"
-	};
-</script>
-<script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
