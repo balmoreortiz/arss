@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Inicio | arrs</title>
+        <title>Detalle del repuesto | arrs</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -44,75 +44,43 @@
                 </ul>
             </div>
         </nav>
-        <div class="container">
-            <div class="row mt-5">
-                <div class="col-10">
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2 col-7 type="text" placeholder="Buscar" aria-label="Search" name="buscarpor" value={{$nombre}}>
-                        <label for="precios">Precios: $0 </label>
-                        <input type="range" id="precios" class="mx-2" name="precios" min="0" max="100" step="1" value="{{$precios}}" onchange="capturar();" 
-                         list="tickmarks">
-                         $<span id='ranPrecio'>{{$precios}}</span>
-                         <datalist id="tickmarks">
-                            <option value="0">
-                            <option value="10">
-                            <option value="20">
-                            <option value="30">
-                            <option value="40">
-                            <option value="50"> 
-                            <option value="60">
-                            <option value="70">
-                            <option value="80">
-                            <option value="90">
-                            <option value="100">
-                          </datalist>
-
-                        <button class="btn btn-outline-success my-2 my-sm-0 mx-2" type="submit">Buscar</button>
-                    </form>
+        <div class="container mt-3">
+            <div class="section-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body p-5">
+                                
+                                <h1 class="text-center"><strong class="d-inline-block mb-2 text-primary">{{$repuesto->NOM_REP}}</strong></h1>
+                                <div class="mb-0">
+                                    <h5 class="text-dark">Descripción:</h5>
+                                    <h5 class="text-info">{{$repuesto->DESC_REP}}</h5>
+                                    <h5 class="text-dark">Marca:</h5>
+                                    <h5 class="text-info">{{$repuesto->MARC_REP}}</h5>
+                                    <h5 class="text-dark">Precio: </h5>
+                                    <h5 class="text-info">${{number_format($repuesto->PREC_REP,2)}}</h5>
+                                    <h5 class="text-dark">Existencia:</h5>
+                                    <h5 class="text-info">{{$repuesto->EXIS_REP}}</h5>
+                                    <h5 class="text-dark">Foto: </h5>
+                                </div>
+                                <img class="card-img-right flex-auto d-lg-block" alt="{{$repuesto->id}}" src="{{asset('storage/'.$repuesto->FOTO_REP)}}" style="max-width: 50%; max-height: 50%;">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-            <div class="row mt-3 offset-2">
-            @foreach ($repuestos as $rep)
-            <div class="card col-md-3 col-sm-12 m-3">
-                <img class="card-img-top" height="200" width="100%" src="{{asset('storage/'.$rep->FOTO_REP)}}" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">{{$rep->NOM_REP}}</h5>
-                    <p class="card-text">{{$rep->DESC_REP}}</p>
-                    <p><b>Precio:</b> {{'$'.number_format($rep->PREC_REP,2)}}</p>
-                    <p><b>Existencia:</b> {{$rep->EXIS_REP}}</p>
-                    <p><b>Marca:</b> {{$rep->MARC_REP}}</p>
-                    <span class="badge badge-info">Repuesto</span>
-                </div>
-                <div class="card-footer">
-                    <a class="btn btn-outline-success my-2 my-sm-0"  href="/rep/{{$rep->id}}">Ver más</a>
-                </div>
-              </div>
-            @endforeach
-            @foreach ($servicios as $ser)
-            <div class="card col-md-3 col-sm-12  m-3">
-            <img class="card-img-top" src="{{asset('storage/'.$ser->FOTO_SERV)}}" height="200" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">{{$ser->NOM_SERV}}</h5>
-                <p class="card-text">{{$ser->DESC_SERV}}</p>
-                <p><b>Precio:</b> {{'$'.number_format($ser->PREC_SERV,2)}}</p>
-                <span class="badge badge-info">Servicio</span>
-                
-            </div>
-            <div class="card-footer">
-                <a class="btn btn-outline-success my-2 my-sm-0" href="/serv/{{$ser->id}}">Ver más</a>
-            </div>
-          </div>
-          
-            @endforeach
-        </div>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script type="text/javascript">
-             function capturar () {
-                    var precios=$('#precios').val();
-                    $('#ranPrecio').text(precios);
-                }
-        </script>
+        <!-- Smartsupp Live Chat script -->
+     <script type="text/javascript">
+        var _smartsupp = _smartsupp || {};
+        _smartsupp.key = 'e8f9bb29702cd58d6331f3f05c11752c1d77d10a';
+        window.smartsupp||(function(d) {
+        var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+        s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+        c.type='text/javascript';c.charset='utf-8';c.async=true;
+        c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+        })(document);
+    </script>
         <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
         <script src="{{ asset('assets/js/popper.min.js') }}"></script>
         <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
