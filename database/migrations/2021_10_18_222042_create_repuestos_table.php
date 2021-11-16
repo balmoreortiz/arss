@@ -13,7 +13,7 @@ class CreateRepuestosTable extends Migration
      */
     public function up()
     {
-        Schema::create('repuesto', function (Blueprint $table) {
+        Schema::create('repuestos', function (Blueprint $table) {
             $table->id();
 
             $table->string('NOM_REP');
@@ -34,6 +34,6 @@ class CreateRepuestosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('repuesto');
+        Schema::dropIfExists('repuestos');
     }
 }
