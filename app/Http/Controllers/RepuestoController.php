@@ -79,7 +79,7 @@ class RepuestoController extends Controller
         $datosRepuestos = request()->except('_token');
 
         if($request->hasFile('FOTO_REP')){
-            $datosRepuestos['FOTO_REP']=$request->file('FOTO_REP')->store('uploads','public');
+            $datosRepuestos['FOTO_REP']=$request->file('FOTO_REP')->store('repuesto','public');
         }
 
         Repuesto::insert($datosRepuestos);
@@ -135,7 +135,7 @@ class RepuestoController extends Controller
         if($request->hasFile('FOTO_SERV')){
             $repuesto=Repuesto::findOrFail($id);
             Storage::delete('public/'.$repuesto->FOTO_SERV);
-            $dataRep['FOTO_SERV']=$request->file('FOTO_SERV')->store('repuestos','public');
+            $dataRep['FOTO_REP']=$request->file('FOTO_REP')->store('repuestos','public');
         }
 
         Repuesto::where('id','=',$id)->update($dataRep);
