@@ -10,10 +10,10 @@ class RepuestoController extends Controller
 {
     function __construct()
     {
-        $this->middleware('permission:ver-repuesto|crear-respuesto|editar-respuesto|borrar-respuesto', ['only'=>['index','show']]);
+        $this->middleware('permission:ver-repuesto|crear-respuesto|editar-respuesto|eliminar-respuesto', ['only'=>['index','show']]);
         $this->middleware('permission:crear-respuesto',['only'=>['create','store']]);
         $this->middleware('permission:editar-respuesto',['only'=>['edit','update']]);
-        $this->middleware('permission:borrar-respuesto',['only'=>['destroy']]);
+        $this->middleware('permission:eliminar-respuesto',['only'=>['destroy']]);
     }
     /**
      * Display a listing of the resource.

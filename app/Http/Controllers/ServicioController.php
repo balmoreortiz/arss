@@ -10,10 +10,10 @@ class ServicioController extends Controller
 {
     function __construct()
     {
-        $this->middleware('permission:ver-servicio|crear-servicio|editar-servicio|borrar-servicio', ['only'=>['index','show']]);
+        $this->middleware('permission:ver-servicio|crear-servicio|editar-servicio|eliminar-servicio', ['only'=>['index','show']]);
         $this->middleware('permission:crear-servicio',['only'=>['create','store']]);
         $this->middleware('permission:editar-servicio',['only'=>['edit','update']]);
-        $this->middleware('permission:borrar-servicio',['only'=>['destroy']]);
+        $this->middleware('permission:eliminar-servicio',['only'=>['destroy']]);
     }
 
     /**
